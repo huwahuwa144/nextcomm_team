@@ -4,10 +4,51 @@
 <head>
   <meta charset="utf-8" />
   <title>HTML 5 complete</title>
+
+  <link rel="stylesheet" href="./lib/css/lookforward.min.css">
+
+  <!-- ページ遷移アクション -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300:500">
+  <link rel="stylesheet" href="https://unpkg.com/unitscss@latest/dist/units.min.css">
+  <link rel="stylesheet" href="./lib/css/lookforward.min.css">
+  <style>
+    .js-lookforward {
+      text-decoration: none;
+    }
+
+    code {
+      background-color: transparent;
+    }
+  </style>
+  <!-- /ページ遷移アクション -->
+
 </head>
 
 <body>
-  <img src="media/images/124497.jpg" />
+  <a href="./roomList.html" class="js-lookforward" data-transition-enter="slideup">
+    <div class="uc-card">
+      <div class="uc-card-title">うんち！</div>
+      <img src="media/images/124497.jpg" />
+    </div>
+  </a>
+
+  <!-- 以下script -->
+  <script src="js/test.js"></script>
+  <!-- ページ遷移アクション -->
+  <script src="lib/js/lookforward.min.js"></script>
+  <script>
+    var lookforward = new LookForward('.js-lookforward');
+    lookforward.on('open', function(e) {
+      console.log('open');
+    });
+    lookforward.on('close', function(e) {
+      console.log('close');
+    });
+    lookforward.on('closeAll', function(e) {
+      console.log('closeAll');
+    });
+  </script>
+  <!-- /ページ遷移アクション -->
 </body>
 
 </html>

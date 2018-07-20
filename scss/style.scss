@@ -1,0 +1,28 @@
+$maincolor: #f00;
+$accentcolor: #fff;
+
+.box {
+  .title {
+    background: $maincolor;
+    color: $accentcolor;
+  }
+
+  .button {
+    background: $maincolor;
+    color: $accentcolor;
+  }
+}
+@mixin ctabutton($background, $color) {
+  background: $background;
+  color: $color;
+}
+
+.box {
+  .button1 {
+    @include ctabutton(red, white);
+  }
+
+  .button2 {
+    @include ctabutton(#0060e6, #fcfcfc)
+  }
+}
