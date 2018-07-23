@@ -21,8 +21,8 @@ document.getElementById('quitRoom').onclick = function() {
 }
 
 let chatlog = function(msg) {
-  let li = document.createElement('li')
-  li.textContent = msg
+  let li = document.createElement('li');
+  li.textContent = msg;
   document.getElementById('chatlog').append(li);
 }
 
@@ -31,7 +31,6 @@ let chatlog = function(msg) {
 //     document.getElementById('chatlog')
 // )
 
-//
 // let chatList = React.createClass({
 //   render: function() {
 //     let chats = this.props.chats.map(function(chat, index) {
