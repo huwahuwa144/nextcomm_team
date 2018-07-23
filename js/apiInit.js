@@ -1,4 +1,4 @@
 const peer = new Peer({
-    key: 'e649cb29-32c4-4274-bbe6-c12e414791dd',
+    key: 'a1fa70b9-71b0-4650-bc84-91c49eaf2521',
     debug: 3
 });
