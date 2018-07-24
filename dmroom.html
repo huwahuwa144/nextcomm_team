@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/dm_room.css">
+  <title>HomeRoom</title>
+</head>
+<body>
+
+  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+
+<center>
+  <div class="container">
+  <div class="card">
+
+    <div class="front side">
+      <h1 class="logo">UserName1</h1>
+    </div>
+
+    <div class="back side">
+      <h3 class="name">[UserName1]</h3>
+      <div>Web Engineer</div>
+      <div class="info">
+        <p><span class="property">Email: </span>example@gmail.com</p>
+        <p><span class="property">Twitter: </span>@example</p>
+        <p><span class="property">Phone: </span>(123) 456-7890</p>
+        <p><span class="property">Website: </span>example.com</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="container_partner">
+<div class="card_partner">
+
+  <div class="front_partner side_partner">
+    <h1 class="logo_partner">UserName2</h1>
+  </div>
+
+  <div class="back_partner side_partner">
+    <h3 class="name_partner">[UserName2]</h3>
+    <div>Application Engineer</div>
+    <div class="info_partner">
+      <p><span class="property_partner">Email: </span>example@gmail.com</p>
+      <p><span class="property_partner">Twitter: </span>@example</p>
+      <p><span class="property_partner">Phone: </span>(123) 456-7890</p>
+      <p><span class="property_partner">Website: </span>example.com</p>
+    </div>
+
+  </div>
+
+</div>
+</div>
+</center>
+
+<!-- メニューバー -->
+<ul class="menulist">
+  <center>
+  <li><a href="#">入室</a></li>
+  <li><a href="#">退室</a></li>
+  </center>
+</ul>
+
+<!--チャットテキスト-->
+<div class="your_container">
+
+        <!-- チャットの外側部分① -->
+        <div class="bms_messages_container">
+            <!-- ヘッダー部分② -->
+            <div class="bms_chat_header">
+
+            </div>
+
+            <!-- タイムライン部分③ -->
+            <div class="bms_messages" style="background-color:#424242;">
+
+                <!--メッセージ１（左側）-->
+                <div class="bms_message bms_left">
+                    <div class="bms_message_box">
+                        <div class="bms_message_content">
+                            <div class="bms_message_text">まるわかり</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bms_clear"></div><!-- 回り込みを解除（スタイルはcssで充てる） -->
+
+                <!--メッセージ２（右側）-->
+                <div class="bms_message bms_right">
+                    <div class="bms_message_box">
+                        <div class="bms_message_content">
+                            <div class="bms_message_text">達也</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bms_clear"></div><!-- 回り込みを解除（スタイルはcssで充てる） -->
+            </div>
+
+            <!-- テキストボックス、送信ボタン④ -->
+            <div class="bms_send">
+                <textarea class="bms_send_message"></textarea>
+                <div class="bms_send_btn">送信</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
