@@ -1,0 +1,376 @@
+
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,500);
+@import 'https://fonts.googleapis.com/css?family=Open+Sans|Roboto:300';
+$colorBack:#424242;
+/* body */
+body {
+  background-color: $colorBack;
+  // background-image: url("../media/images/ConferenceImage.jpg");
+  // background-size: cover;
+}
+
+/*画面共有-User1[自分]*/
+$padding:0px;
+
+// * { box-sizing: border-box; }
+
+// body { background: #757575; overflow-x: hidden; }
+.container {
+  perspective: 800px;
+
+  /* Styling */
+  color: #fff;
+  font-family: 'Open Sans', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+
+  /* Center it */
+  position: absolute;
+  top: 30%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+}
+.card {
+  /* Styling */
+  width: 300px;
+  height: 200px;
+  background: rgb(20,20,20);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+
+  /* Card flipping effects */
+  transform-style: preserve-3d;
+  transition: 0.6s;
+}
+.side {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  /* Fix Chrome rendering bug */
+  transform: rotate(0deg) translateZ(1px);
+}
+
+/* Flip the card on hover */
+.container:hover .card,
+.back {
+  transform: rotateY(-180deg) translateZ(1px);
+}
+
+/* Front styling */
+.front {
+  /* Center the name + outline (almost) */
+  line-height: 0px; /* Height - some (because visual center is a little higher than actual center) */
+}
+.logo {
+  outline: 1px solid #19F6E8;
+  display: inline-block;
+  padding: 15px 20px;
+  text-transform:uppercase;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.6em;
+  font-weight: normal;
+  line-height: 8px;
+  letter-spacing: 8px;
+}
+
+/* Back styling */
+.back {
+  background: #15CCC0;
+  padding: $padding;
+}
+.name {
+  color: #3B3B3B;
+  margin-bottom: 0;
+}
+// p {
+//   margin: 0.6em 0;
+// }
+.info {
+  text-align: left;
+  position: absolute;
+  margin-left: 10px;
+  margin-top: 10px;
+  // bottom: 10px;
+  // left: 10px;
+  color: #3b3b3b;
+  font-size: 10px;
+}
+.property {
+  color: #fff;
+
+}
+
+/* Make semi-responsive */
+@media (max-width:700px) {
+  .card { transform: scale(.5); }
+  .container:hover .card { transform: scale(.5) rotateY(-180deg) translateZ(1px); }
+}
+
+/*下部のメニュー*/
+.menulist {
+  font-family: 'Raleway', Arial, sans-serif;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 1px;
+  * {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: all 0.35s ease;
+    transition: all 0.35s ease;
+  }
+  li {
+    display: inline-block;
+    list-style: outside none none;
+    margin: 0 1em;
+    padding: 0;
+  }
+  a {
+    padding: 0.5em 0.8em;
+    margin: 0.2em 0;
+    display: block;
+    color: rgba(255, 255, 255, 0.5);
+    position: relative;
+    text-decoration: none;
+    &:before, &:after {
+      height: 14px;
+      width: 14px;
+      position: absolute;
+      content: '';
+      -webkit-transition: all 0.35s ease;
+      transition: all 0.35s ease;
+      opacity: 0;
+    }
+    &:before {
+      left: 0;
+      top: 0;
+      border-left: 3px solid #c0392b;
+      border-top: 3px solid #c0392b;
+      -webkit-transform: translate(100%, 50%);
+      transform: translate(100%, 50%);
+    }
+    &:after {
+      right: 0;
+      bottom: 0;
+      border-right: 3px solid #c0392b;
+      border-bottom: 3px solid #c0392b;
+      -webkit-transform: translate(-100%, -50%);
+      transform: translate(-100%, -50%);
+    }
+    &:hover {
+      color: #ffffff;
+    }
+  }
+  .current a {
+    color: #ffffff;
+  }
+  a:hover:before, .current a:before, a:hover:after, .current a:after {
+    -webkit-transform: translate(0%, 0%);
+    transform: translate(0%, 0%);
+    opacity: 1;
+  }
+}
+
+
+/*画面共有-User2[相手]*/
+$padding:0px;
+
+// * { box-sizing: border-box; }
+
+// body { background: #757575; overflow-x: hidden; }
+.container_partner {
+  perspective: 800px;
+
+  /* Styling */
+  color: #fff;
+  font-family: 'Open Sans', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+
+  /* Center it */
+  position: absolute;
+  top: 30%;
+  left: 70%;
+  transform: translate(-50%, -50%);
+}
+.card_partner {
+  /* Styling */
+  width: 300px;
+  height: 200px;
+  background: rgb(20,20,20);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+
+  /* Card flipping effects */
+  transform-style: preserve-3d;
+  transition: 0.6s;
+}
+.side_partner {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  /* Fix Chrome rendering bug */
+  transform: rotate(0deg) translateZ(1px);
+}
+
+/* Flip the card on hover */
+.container_partner:hover .card_partner,
+.back_partner {
+  transform: rotateY(-180deg) translateZ(1px);
+}
+
+/* Front styling */
+.front_partner {
+  /* Center the name + outline (almost) */
+  line-height: 0px; /* Height - some (because visual center is a little higher than actual center) */
+}
+.logo_partner {
+  outline: 1px solid #19F6E8;
+  display: inline-block;
+  padding: 15px 20px;
+  text-transform:uppercase;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.6em;
+  font-weight: normal;
+  line-height: 8px;
+  letter-spacing: 8px;
+}
+
+/* Back styling */
+.back_partner {
+  background: #15CCC0;
+  padding: $padding;
+}
+.name_partner {
+  color: #3B3B3B;
+  margin-bottom: 0;
+}
+// p {
+//   margin: 0.6em 0;
+// }
+.info_partner {
+  text-align: left;
+  position: absolute;
+  margin-left: 10px;
+  margin-top: 10px;
+  // bottom: 10px;
+  // left: 10px;
+  color: #3b3b3b;
+  font-size: 10px;
+}
+.property_partner {
+  color: #fff;
+
+}
+
+//chatText
+.your_container{
+    /* 高さや幅など、好きな様に設定
+    bms_messages_containerの方で、縦横いっぱいに広がってくれるので、
+    ここで充てた高さと横幅がそのままスタイルになる仕組み */
+
+    height: 30%;
+    width: 70%;
+    list-style: none;
+    position: absolute;
+    top: 60%;
+    left: 15%;
+    bottom: 95%;
+}
+/* チャットの外側部分① */
+.bms_messages_container{
+    height: 100%;/*your_containerに対して100%になる */
+    width: 100%;/*your_containerに対して100%になる */
+    background-color: #eee;
+}
+
+/* ヘッダー部分② */
+.ms_chat_header {
+    padding: 6px;/*隙間調整*/
+    font-size: 16px;
+    height: 34px;
+    background: #ddd;
+    border: 1px solid #ccc;
+}
+
+/* タイムライン部分③ */
+.bms_messages {
+    overflow: auto;/* スクロールを効かせつつ、メッセージがタイムラインの外に出ないようにする */
+    height:100%;/*テキストエリアが下に張り付く様にする*/
+    border-top: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    background-color: #eee;
+    box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.2) inset;/*ヘッダーの下に影を入れる*/
+}
+    /* メッセージ全般のスタイル */
+    .bms_message {
+        color: #eee;
+        margin: 0px;
+        padding: 0 14px;/*吹き出しがタイムラインの側面にひっつかない様に隙間を開ける*/
+        font-size: 16px;
+        word-wrap: break-word;/* 吹き出し内で自動で改行 */
+        white-space: normal;/*指定widthに合わせて、文字を自動的に改行*/
+    }
+    /* メッセージ１（左側） */
+    .bms_left {
+        float: left;/*吹き出しをbms_messagesに対して左寄せ*/
+        line-height: 1.3em;
+    }
+    /* メッセージ２（右側） */
+    .bms_right {
+        float: right;/*吹き出しをbms_messagesに対して右寄せ*/
+        line-height: 1.3em;
+    }
+    /* 回り込みを解除 */
+    .bms_clear {
+        clear: both; /* 左メッセージと右メッセージの回り込み(float)の効果の干渉を防ぐために必要（これが無いと、自分より下のメッセージにfloatが影響する） */
+
+    }
+
+/* テキストエリア、送信ボタン④ */
+.bms_send {
+    background-color:#eee;/*タイムラインの色と同じにする*/
+    border-right: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    height: 48px;
+    padding: 4px;
+}
+    .bms_send_message{
+        width: calc(100% - 75px);/*常に送信ボタンの横幅を引いたサイズに動的に計算*/
+        line-height: 16px;
+        font-size: 22px;
+        height: 48px;
+        padding: 14px 6px 0px 6px;/*文字がテキストエリアの中心になる様に隙間調整*/
+        border: 1px solid #ccc;
+        border-radius: 4px;/*角丸*/
+        text-align: left;/*文字を左寄せ*/
+        box-shadow: 2px 2px 4px 0px rgba(0,0,0,0.2) inset;/*内側に影を入れてテキストエリアらしくした*/
+        box-sizing: border-box;/*paddingとborderの要素の高さと幅の影響をなくす（要素に高さと幅を含める）*/
+
+    }
+    .bms_send_btn {
+        width: 72px;
+        height: 48px;
+        font-size: 16px;
+        line-height: 3em;
+        float: right;/*bms_sendに対して右寄せ*/
+        color: #fff;
+        font-weight: bold;
+        background: #bcbcbc;
+        text-align: center;/*文字をボタン中央に表示*/
+        border: 1px solid #bbb;
+        border-radius: 4px;/*角丸*/
+        box-sizing: border-box;/*paddingとborderの要素の高さと幅の影響をなくす（要素に高さと幅を含める）*/
+    }
+    .bms_send_btn:hover {
+        background: #13178E; /*マウスポインタを当てた時にアクティブな色になる*/
+        cursor: pointer;/*マウスポインタを当てた時に、カーソルが指の形になる*/
+    }
+
+/* Make semi-responsive */
+@media (max-width:700px) {
+  .card_partner { transform: scale(.5); }
+  .container_partner:hover .card_partner { transform: scale(.5) rotateY(-180deg) translateZ(1px); }
+}
