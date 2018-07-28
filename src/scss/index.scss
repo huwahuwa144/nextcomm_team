@@ -1,0 +1,92 @@
+.profileCard {
+  .pCardTable {
+    width: 300px;
+    margin: 20px;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 3px 6px #ccc;
+
+    .p_title {
+      width: 300px;
+      text-align: center;
+    }
+
+    .userNameAndIcon {
+      text-align: left;
+
+      .userName {
+        text-decoration: underline;
+      }
+
+      .profileIcon {
+        background-image: url("../images/default_icon.png");
+        // width: expression(this.width >= this.height ? "100px" : "auto");
+        // height: expression(this.width <= this.height ? "100px" : "auto");
+        // width:100px;
+        // height:100px;
+        border-radius: 100px;
+        -webkit-border-radius: 100px;
+        -moz-border-radius: 100px;
+        // object-fit: fill;
+        display: inline-block;
+        background-position: center center;
+        background-repeat: no-repeat;
+        margin: 5px;
+        width: 100px;
+        height: 100px;
+        border: 1px solid #ccc;
+        background-size: cover;
+      }
+    }
+  }
+}
+
+.bottomMenu {
+  .buttomMenuButton{
+  .phoneButton {
+    background-image: url("../images/phone.jpg");
+    border-radius: 50px;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    display: inline-block;
+    background-position: center center;
+    background-repeat: no-repeat;
+    margin: 5px;
+    width: 50px;
+    height: 50px;
+    border: 1px solid #ccc;
+    background-size: cover;
+
+  }
+
+  .dmButton {
+    background-image: url("../images/dm.jpg");
+    border-radius: 50px;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    display: inline-block;
+    background-position: center center;
+    background-repeat: no-repeat;
+    margin: 5px;
+    width: 50px;
+    height: 50px;
+    border: 1px solid #ccc;
+    background-size: cover;
+  }
+
+  .taskButton {
+    background-image: url("../images/task.png");
+    border-radius: 50px;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    display: inline-block;
+    background-position: center center;
+    background-repeat: no-repeat;
+    margin: 5px;
+    width: 50px;
+    height: 50px;
+    border: 1px solid #ccc;
+    background-size: cover;
+  }
+  }
+}
