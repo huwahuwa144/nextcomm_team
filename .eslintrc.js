@@ -9,7 +9,8 @@ module.exports = {
     "document": true,
     "SubmissionError": true,
     "google": true,
-    "console": true
+    "console": true,
+    "alert": true,
   },
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
@@ -25,7 +26,8 @@ module.exports = {
     "no-restricted-syntax": [0],
     "react/require-default-props": [0],
     "linebreak-style": ["error", "windows"],
-    "react/jsx-one-expression-per-line":[0]
+    "react/jsx-one-expression-per-line":[0],
+    "react/destructuring-assignment": [0]
   }
 
 };

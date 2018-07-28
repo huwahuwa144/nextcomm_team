@@ -1,8 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
+import firebase from 'firebase';
+import { firebaseConfig } from './firebase/config.jsx';
+
 import './index.css';
-import App from './App';
+import AppChat from './components/AppChat.jsx';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+export const firebaseApp = firebase.initializeApp(firebaseConfig);
+export const firebaseDb = firebaseApp.database();
+
+ReactDOM.render(<AppChat />, document.getElementById('root'));
 registerServiceWorker();
