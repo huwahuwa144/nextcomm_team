@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
 import '../css/App.css';
-// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
+import { firestore, FieldValue } from '../firebase/config.jsx';
 import Message from './Messages.jsx';
 import ChatBox from './ChatBox.jsx';
+
+// firebaseStoreのchatlogにアクセス
+const messagesCol = firestore.collection('chatlog');
+// firebaseStoreの監視を終了させるやつ
+const unsubscribe = messagesCol.onSnapshot(() => {});
 
 class AppChat extends Component {
   constructor(props) {
@@ -17,12 +24,38 @@ class AppChat extends Component {
     };
   }
 
-  // componentWillMount() {
-  //   let msgs = this.state.messages;
-  //   msgs.push({
-  //     'text':
-  //   })
-  // }
+  // Mountされた時実行
+  componentWillMount() {
+    // timestampで並び替えて50件まで表示
+    messagesCol.orderBy('timestamp').limit(50).onSnapshot((snapshot) => {
+      snapshot.docChanges().forEach((change) => {
+        const msgs = this.state.messages;
+        // 追加時
+        if (change.type === 'added') {
+          msgs.push({
+            text: change.doc.data().text,
+            user_name: change.doc.data().user_name,
+            profile_image: change.doc.data().profile_image,
+          });
+          const temp = msgs;
+          this.setState({
+            messages: temp,
+          });
+        }
+        if (change.type === 'modified') {
+          // 変更された時
+        }
+        if (change.type === 'removed') {
+          // 削除された時
+        }
+      });
+    });
+  }
+
+  // 消える時実行
+  componentWillUnmount() {
+    unsubscribe();
+  }
 
   onTextChange(e) {
     if (e.target.name === 'user_name') {
@@ -46,21 +79,18 @@ class AppChat extends Component {
     } else if (this.state.text === '') {
       alert('text is empty');
     } else {
-      const msgs = [];
-      msgs.push({
-        text: this.state.text,
+      messagesCol.add({
         user_name: this.state.user_name,
         profile_image: this.state.profile_image,
-      });
-      this.setState({
-        messages: msgs,
+        text: this.state.text,
+        timestamp: FieldValue.serverTimestamp(),
       });
     }
   }
 
   render() {
     return (
-      <div>
+      <MuiThemeProvider>
         <div className="App">
           <div className="App-header">
             <h2>Chat</h2>
@@ -72,7 +102,7 @@ class AppChat extends Component {
           </div>
           <ChatBox onTextChange={this.onTextChange} onButtonClick={this.onButtonClick} />
         </div>
-      </div>
+      </MuiThemeProvider>
     );
   }
 }

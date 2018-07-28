@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import Avatar from 'material-ui/Avatar';
-// import List from 'material-ui/List/List';
-// import ListItem from 'material-ui/List/ListItem';
-// import Chip from 'material-ui/Chip';
+import Avatar from 'material-ui/Avatar';
+import List from 'material-ui/List/List';
+import ListItem from 'material-ui/List/ListItem';
+import Chip from 'material-ui/Chip';
 
 const styles = {
   chip: {
@@ -19,17 +19,17 @@ export default class Message extends React.Component {
   render() {
     return (
       <div className="Message">
-        <div>
-          <div disabled="true">
-            <img className="" alt="" src={this.props.message.profile_image} />
+        <List>
+          <ListItem disabled="true">
+            <Avatar className="" src={this.props.message.profile_image} />
             <span style={{ marginBottom: -5 }}>@{this.props.message.user_name}</span>
             <div className="">
-              <div style={styles.chip}>
+              <Chip style={styles.chip}>
                 {this.props.message.text}
-              </div>
+              </Chip>
             </div>
-          </div>
-        </div>
+          </ListItem>
+        </List>
       </div>
     );
   }
