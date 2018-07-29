@@ -42,7 +42,6 @@ class AppChat extends Component {
             user_name: change.doc.data().user_name,
             profile_image: change.doc.data().profile_image,
           });
-          peer.send();
           const temp = msgs;
           this.setState({
             messages: temp,
