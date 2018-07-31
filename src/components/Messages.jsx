@@ -1,17 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Avatar from 'material-ui/Avatar';
-import List from 'material-ui/List/List';
-import ListItem from 'material-ui/List/ListItem';
-import Chip from 'material-ui/Chip';
+import Avatar from '@material-ui/core/Avatar';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListSubheader from '@material-ui/core/ListSubheader';
+import Chip from '@material-ui/core/Chip';
 
 const styles = {
+  header: {
+    textAlign: 'left',
+  },
   chip: {
     margin: 4,
   },
   wrapper: {
     display: 'flex',
     flexWrap: 'wrap',
+  },
+  row: {
+    display: 'flex',
+    justifyContent: 'center',
   },
 };
 
@@ -20,14 +29,15 @@ export default class Message extends React.Component {
     return (
       <div className="Message">
         <List>
-          <ListItem disabled="true">
-            <Avatar className="" src={this.props.message.profile_image} />
-            <span style={{ marginBottom: -5 }}>@{this.props.message.user_name}</span>
-            <div className="">
-              <Chip style={styles.chip}>
-                {this.props.message.text}
-              </Chip>
-            </div>
+          <ListSubheader style={styles.header}>
+            <Chip
+              style={styles.header}
+              avatar={<Avatar className="" src={this.props.message.profile_image} />}
+              label={this.props.message.user_name}
+            />
+          </ListSubheader>
+          <ListItem>
+            <ListItemText primary={this.props.message.text} />
           </ListItem>
         </List>
       </div>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../css/App.css';
-import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
-import Button from '@material-ui/core/Button';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import RaisedButton from 'material-ui/RaisedButton';
 
 import { firestore, FieldValue } from '../firebase/config.jsx';
 import { peer } from '../skyway/config.jsx';
@@ -42,6 +42,7 @@ class AppChat extends Component {
             user_name: change.doc.data().user_name,
             profile_image: change.doc.data().profile_image,
           });
+          peer.send();
           const temp = msgs;
           this.setState({
             messages: temp,
@@ -131,8 +132,8 @@ class AppChat extends Component {
           </div>
           <ChatBox onTextChange={this.onTextChange} onButtonClick={this.onButtonClick} />
           <div className="">
-            <Button variant="contained" name="join" color="primary" className="" onClick={this.onJoinButtonClick}>Join</Button>
-            <Button variant="contained" name="quit" color="primary" className="" onClick={this.onQuitButtonClick}>Quit</Button>
+            <RaisedButton name="join" primary="true" label="Join" className="" onClick={this.onJoinButtonClick} />
+            <RaisedButton name="quit" primary="true" label="Quit" className="" onClick={this.onQuitButtonClick} />
           </div>
         </div>
       </MuiThemeProvider>
