@@ -1,0 +1,21 @@
+.videoCallBox{
+  display: flex;
+  flex-direction: row;
+  width:100%;
+  background: #000000;
+}
+.videoCallContainer{
+  width:1280px;
+  height:480px;
+  margin:auto;
+  display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.videoCallContainer2{
+
+}
+.screenSharingCanvasMe,.screenSharingCanvasYou{
+  width:50%;
+  vertical-align: middle;
+}
