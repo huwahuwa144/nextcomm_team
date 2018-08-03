@@ -8,7 +8,7 @@ import Home from './Home';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { loading: true, authenticated: false, user: null };
+    this.state = { loading: true, authenticated: false };
   }
 
   componentWillMount() {
@@ -16,13 +16,13 @@ class App extends React.Component {
       if (user) {
         this.setState({
           authenticated: true,
-          currentUser: user,
+          // currentUser: user,
           loading: false,
         });
       } else {
         this.setState({
           authenticated: false,
-          currentUser: null,
+          // currentUser: null,
           loading: false,
         });
       }
