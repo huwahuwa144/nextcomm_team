@@ -1,15 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-// import firebase from 'firebase';
-// import { firebaseConfig } from './firebase/config.jsx';
-
 import './index.css';
+// Chat
 import AppChat from './components/AppChat.jsx';
-import registerServiceWorker from './registerServiceWorker';
+// Profile
+// import ProfileAppearance from './components/profile.jsx';
 
-// export const firebaseApp = firebase.initializeApp(firebaseConfig);
-// export const firebaseDb = firebaseApp.database();
+// キャッシュを残す? 本実装まではコメントアウト
+// import registerServiceWorker from './registerServiceWorker';
 
+// Chat
 ReactDOM.render(<AppChat />, document.getElementById('root'));
-registerServiceWorker();
+// Profile
+// ReactDOM.render(<ProfileAppearance />, document.getElementById('root'));
+
+// キャッシュを残す? 本実装まではコメントアウト
+// registerServiceWorker();

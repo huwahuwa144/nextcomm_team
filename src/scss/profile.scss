@@ -1,0 +1,99 @@
+$colorwhite: #FFF;
+$colorgray: #CCC;
+$marginbutton: 5px;
+$margincard: 20px;
+
+.profilecard {
+
+  .p-cardtable {
+    margin: $margincard;
+    background-color: $colorwhite;
+    border-radius: 5px;
+    box-shadow: 0 3px 6px $colorgray;
+    width: 300px;
+
+    .p-title {
+      text-align: center;
+      width: 300px;
+    }
+
+    .user-name-icon {
+      text-align: left;
+
+      .username {
+        text-decoration: underline;
+      }
+
+      .profileicon {
+        -moz-border-radius: 100px;
+        -webkit-border-radius: 100px;
+        display: inline-block;
+        margin: $marginbutton;
+        // background-image: url('../images/default_icon.png');
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border: 1px solid $colorgray;
+        border-radius: 100px;
+        // width: expression(this.width >= this.height ? "100px" : "auto");
+        // height: expression(this.width <= this.height ? "100px" : "auto");
+        // width:100px;
+        // height:100px;
+        // object-fit: fill;
+        height: 100px;
+        width: 100px;
+      }
+    }
+  }
+}
+
+.bottom-menu {
+
+  .buttom-menu-button {
+
+    .phone-button {
+      -moz-border-radius: 50px;
+      -webkit-border-radius: 50px;
+      display: inline-block;
+      margin: $marginbutton;
+      // background-image: url('../images/phone.jpg');
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      border: 1px solid $colorgray;
+      border-radius: 50px;
+      height: 50px;
+      width: 50px;
+    }
+
+    .dm-button {
+      -moz-border-radius: 50px;
+      -webkit-border-radius: 50px;
+      display: inline-block;
+      margin: $marginbutton;
+      // background-image: url('../images/dm.jpg');
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      border: 1px solid $colorgray;
+      border-radius: 50px;
+      height: 50px;
+      width: 50px;
+    }
+
+    .task-button {
+      -moz-border-radius: 50px;
+      -webkit-border-radius: 50px;
+      display: inline-block;
+      margin: $marginbutton;
+      // background-image: url('../images/task.png');
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      border: 1px solid $colorgray;
+      border-radius: 50px;
+      height: 50px;
+      width: 50px;
+    }
+  }
+}
