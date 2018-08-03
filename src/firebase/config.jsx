@@ -9,7 +9,7 @@ export const firebaseConfig = {
   messagingSenderId: '6069246383',
 };
 
-const firebaseApp = firebase.initializeApp(firebaseConfig);
+export const firebaseApp = firebase.initializeApp(firebaseConfig);
 
 export const firestore = firebaseApp.firestore();
 export const { FieldValue } = firebase.firestore;
