@@ -1,19 +1,40 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import Button from '@material-ui/core/Button';
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+
 // import RaisedButton from 'material-ui/RaisedButton';
 // import TextField from 'material-ui/TextField';
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      light: '#484A48',
+      main: '#484A48',
+      dark: '#484A48',
+      contrastText: '#fff',
+    },
+    secondary: {
+      light: '#FAAC58',
+      main: '#FE9A2E',
+      dark: '#FF8000',
+      contrastText: '#000',
+    },
+  },
+});
 
 export default class CallController extends React.Component {
   render() {
     return (
-      <div className="CallController">
-        <button type="button" className="ScreenShareButton" onClick={this.props.screenShareStart}>画面共有</button>
-        <button primary="true" type="button" className="CallButton" onClick={this.props.callStart}>通話</button>
-        <button type="button" className="VideoCallButton" onClick={this.props.videoCallStart}>ビデオ通話</button>
-        <button type="button" className="CallEndButton" onClick={this.props.callStop}>切断</button>
-        <p id="mepeer-id" />
-      </div>
+      <MuiThemeProvider theme={theme}>
+        <div className="CallController">
+          <div className="CallController-2">
+            <Button variant="contained" size="medium" color="secondary" className="screen-share-button" onClick={this.props.screenShareStart}>画面共有</Button>
+            <Button variant="contained" size="medium" color="secondary" className="call-button" onClick={this.props.callStart}>通話</Button>
+            <Button variant="contained" size="medium" color="secondary" className="video-call-button" onClick={this.props.videoCallStart}>ビデオ通話</Button>
+            <Button variant="contained" size="medium" color="secondary" className="call-end-button" onClick={this.props.callStop}>切断</Button>
+          </div>
+        </div>
+      </MuiThemeProvider>
     );
   }
 }

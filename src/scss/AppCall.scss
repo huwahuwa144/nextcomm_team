@@ -1,10 +1,16 @@
-.videoCallBox{
+$black: #000;
+$background-color: #EFF1F3;
+body{
+background: #a09a9a;
+}
+.video-call-box{
   display: flex;
   flex-direction: row;
   width:100%;
-  background: #000000;
+  background: $black;
+  box-shadow: 2px 1px 1px;
 }
-.videoCallContainer{
+.video-call-container{
   width:1280px;
   height:480px;
   margin:auto;
@@ -12,10 +18,50 @@
 	align-items: center;
 	justify-content: center;
 }
-.videoCallContainer2{
+.video-call-container2{
 
 }
-.screenSharingCanvasMe,.screenSharingCanvasYou{
-  width:50%;
+.video-me{
+  width:calc(49% - 4px);
+  margin-right: 0.5%;
+  margin-left:0.5%;
   vertical-align: middle;
+}
+
+.video-others{
+  width:calc(49% - 4px);
+  margin-right:0.5%;
+  margin-left: 0.5%;
+  vertical-align: middle;
+}
+.video-others-min {
+  margin:2px;
+  margin-top:4px;
+  width:12.5%;
+  max-height: 150px;
+  border-top:2px solid #FFF;
+  border-right: 2px solid #FFF;
+  border-left: 2px solid #FFF;
+  border-bottom: 2px solid #FFF;
+  box-shadow: 2px 1px 1px;
+  background: $black;
+
+}
+.root-grid {
+  margin:auto;
+}
+.video-grid {
+  flex-wrap: nowrap;
+}
+
+.video-grid-center {
+  text-align: center;
+}
+
+// CallController_test
+
+.CallController {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
