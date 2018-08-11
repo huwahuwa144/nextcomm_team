@@ -15,7 +15,7 @@ export default class CallBox extends React.Component {
                 <video src={this.props.streamUrl} className="video-me" autoPlay><track kind="captions" /></video>
               </span>
               <span className="video-border">
-                <video src={this.props.streamUrl} className="video-others" autoPlay><track kind="captions" /></video>
+                <video src={this.props.streamOthersUrl} className="video-others" autoPlay><track kind="captions" /></video>
               </span>
             </div>
           </div>
@@ -53,4 +53,5 @@ export default class CallBox extends React.Component {
 
 CallBox.propTypes = {
   streamUrl: PropTypes.string,
+  streamOthersUrl: PropTypes.string,
 };
