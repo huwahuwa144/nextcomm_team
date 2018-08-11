@@ -1,55 +1,64 @@
 $black: #000;
-$background-color: #EFF1F3;
-body{
-background: #a09a9a;
+$background-color: #A09A9A;
+$auto: auto;
+$video-others-min-margin: 2px;
+$video-others-min-border-color: #FFF;
+
+body {
+  .call {
+    background: $background-color;
+  }
 }
-.video-call-box{
+
+.video-call-box {
   display: flex;
   flex-direction: row;
-  width:100%;
+  width: 100%;
   background: $black;
   box-shadow: 2px 1px 1px;
 }
-.video-call-container{
-  width:1280px;
-  height:480px;
-  margin:auto;
+
+.video-call-container {
   display: flex;
-	align-items: center;
-	justify-content: center;
+  margin: $auto;
+  height: 480px;
+  align-items: center;
+  justify-content: center;
+  width: 1280px;
 }
-.video-call-container2{
 
-}
-.video-me{
-  width:calc(49% - 4px);
-  margin-right: 0.5%;
-  margin-left:0.5%;
+.video-me {
+  width: calc(49% - 4px);
+  margin-right: .5%;
+  margin-left: .5%;
   vertical-align: middle;
 }
 
-.video-others{
-  width:calc(49% - 4px);
-  margin-right:0.5%;
-  margin-left: 0.5%;
+.video-others {
+  width: calc(49% - 4px);
+  margin-right: .5%;
+  margin-left: .5%;
   vertical-align: middle;
 }
+
 .video-others-min {
-  margin:2px;
-  margin-top:4px;
-  width:12.5%;
+  margin: $video-others-min-margin;
+  margin-top: 4px;
+  width: 12.5%;
   max-height: 150px;
-  border-top:2px solid #FFF;
-  border-right: 2px solid #FFF;
-  border-left: 2px solid #FFF;
-  border-bottom: 2px solid #FFF;
+  border-top: 2px solid $video-others-min-border-color;
+  border-right: 2px solid $video-others-min-border-color;
+  border-left: 2px solid $video-others-min-border-color;
+  border-bottom: 2px solid $video-others-min-border-color;
   box-shadow: 2px 1px 1px;
   background: $black;
 
 }
+
 .root-grid {
-  margin:auto;
+  margin: $auto;
 }
+
 .video-grid {
   flex-wrap: nowrap;
 }
@@ -60,7 +69,7 @@ background: #a09a9a;
 
 // CallController_test
 
-.CallController {
+.callcontroller {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;

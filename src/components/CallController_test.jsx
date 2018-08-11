@@ -26,8 +26,8 @@ export default class CallController extends React.Component {
   render() {
     return (
       <MuiThemeProvider theme={theme}>
-        <div className="CallController">
-          <div className="CallController-2">
+        <div className="callcontroller">
+          <div className="callcontroller-2">
             <Button variant="contained" size="medium" color="secondary" className="screen-share-button" onClick={this.props.screenShareStart}>画面共有</Button>
             <Button variant="contained" size="medium" color="secondary" className="call-button" onClick={this.props.callStart}>通話</Button>
             <Button variant="contained" size="medium" color="secondary" className="video-call-button" onClick={this.props.videoCallStart}>ビデオ通話</Button>

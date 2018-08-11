@@ -82,7 +82,7 @@ class AppCall extends Component {
 
   render() {
     return (
-      <div>
+      <div className="call">
         <CallBox streamUrl={this.state.streamUrl} streamOthersUrl={this.state.streamOthersUrl} />
         <CallController callStart={this.callStart} callStop={this.callStop} />
       </div>
