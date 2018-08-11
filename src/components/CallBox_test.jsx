@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { videoTagString, VideoTag } from 'react-video-tag'
+import { VideoTag } from 'react-video-tag';
 
 // import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 // import RaisedButton from 'material-ui/RaisedButton';
@@ -17,7 +17,7 @@ export default class CallBox extends React.Component {
                 <VideoTag src={this.props.streamUrl} className="video-me" autoPlay muted><track kind="captions" /></VideoTag>
               </span>
               <span className="video-border">
-                <video muted src={this.props.streamOthersUrl} className="video-others" autoPlay><track kind="captions" /></video>
+                <VideoTag src={this.props.streamOthersUrl} className="video-others" autoPlay><track kind="captions" /></VideoTag>
               </span>
             </div>
           </div>
@@ -25,25 +25,25 @@ export default class CallBox extends React.Component {
         <div className="root-grid">
           <div className="video-grid-center">
             <span className="video-grid">
-              <video src={this.props.streamUrl} className="video-others-min" autoPlay muted><track kind="captions" /></video>
+              <VideoTag src={this.props.streamUrl} className="video-others-min" autoPlay muted><track kind="captions" /></VideoTag>
             </span>
             <span className="video-grid">
               <VideoTag src={this.props.streamUrl} className="video-others-min" muted autoPlay><track kind="captions" /></VideoTag>
             </span>
             <span className="video-grid">
-              <video src={this.props.streamUrl} className="video-others-min" muted autoPlay><track kind="captions" /></video>
+              <VideoTag src={this.props.streamUrl} className="video-others-min" muted autoPlay><track kind="captions" /></VideoTag>
             </span>
             <span className="video-grid">
-              <video src={this.props.streamUrl} className="video-others-min" muted autoPlay><track kind="captions" /></video>
+              <VideoTag src={this.props.streamUrl} className="video-others-min" muted autoPlay><track kind="captions" /></VideoTag>
             </span>
             <span className="video-grid">
-              <video src={this.props.streamUrl} className="video-others-min" muted autoPlay><track kind="captions" /></video>
+              <VideoTag src={this.props.streamUrl} className="video-others-min" muted autoPlay><track kind="captions" /></VideoTag>
             </span>
             <span className="video-grid">
-              <video src={this.props.streamUrl} className="video-others-min" muted autoPlay><track kind="captions" /></video>
+              <VideoTag src={this.props.streamUrl} className="video-others-min" muted autoPlay><track kind="captions" /></VideoTag>
             </span>
             <span className="video-grid">
-              <video src={this.props.streamUrl} className="video-others-min" muted autoPlay><track kind="captions" /></video>
+              <VideoTag src={this.props.streamUrl} className="video-others-min" muted autoPlay><track kind="captions" /></VideoTag>
             </span>
           </div>
         </div>
