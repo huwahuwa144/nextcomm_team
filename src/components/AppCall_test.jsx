@@ -35,20 +35,20 @@ class AppCall extends Component {
     peer.on('open', () => {
       console.log(peer.id);
     });
-    global.navigator.mediaDevices.getUserMedia({ audio: false, video: true })
+    global.navigator.mediaDevices.getUserMedia({ audio: true, video: true })
       .then((streama) => {
         this.setState({ streamUrl: window.URL.createObjectURL(streama) });
-        this.setState({ room: peer.joinRoom('tmgchattestservera', { mode: 'sfu', stream: streama }) });
+        this.setState({ room: peer.joinRoom('tmgchattestserver1234', { mode: 'sfu', stream: streama }) });
         console.log(this.state.room.getLog());
         console.log(streama);
       }).catch((error) => {
         console.error('mediaDvice.getUserMedia() error:', error);
       });
-    // // 接続先のpeerからメディアチャネルの接続を受信したときのイベント
-    // peer.on('call', (call) => {
-    //   call.answer(this.state.streamUrl);
-    //   alert('calling');
-    // });
+    // 接続先のpeerからメディアチャネルの接続を受信したときのイベント
+    peer.on('call', (call) => {
+      call.answer(this.state.streamUrl);
+      alert('calling');
+    });
   }
 
   callStart() {

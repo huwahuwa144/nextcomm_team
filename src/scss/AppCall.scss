@@ -1,5 +1,6 @@
 $black: #000;
 $background-color: #A09A9A;
+$video-background-color: #333;
 $auto: auto;
 $video-others-min-margin: 2px;
 $video-others-min-border-color: #FFF;
@@ -14,7 +15,7 @@ body {
   display: flex;
   flex-direction: row;
   width: 100%;
-  background: $black;
+  background: $video-background-color;
   box-shadow: 2px 1px 1px;
 }
 
