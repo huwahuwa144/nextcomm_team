@@ -39,16 +39,16 @@ class AppCall extends Component {
       .then((streama) => {
         this.setState({ streamUrl: window.URL.createObjectURL(streama) });
         this.setState({ room: peer.joinRoom('tmgchattestserver1234', { mode: 'sfu', stream: streama }) });
+        // ルームに新しいPeerが参加したときに自分のstreamを更新する
+        this.state.room.on('peerJoin', () => {
+          console.log('peerJoin');
+          this.state.room.replaceStream(streama);
+        });
         console.log(this.state.room.getLog());
         console.log(streama);
       }).catch((error) => {
         console.error('mediaDvice.getUserMedia() error:', error);
       });
-    // 接続先のpeerからメディアチャネルの接続を受信したときのイベント
-    peer.on('call', (call) => {
-      call.answer(this.state.streamUrl);
-      alert('calling');
-    });
   }
 
   callStart() {
