@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 // import firebase from 'firebase';
-import { firebaseApp } from '../firebase/config.jsx';
+import { firebaseApp } from './configs/firebase/config.jsx';
 import Login from './Login';
 import Home from './Home';
 

@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import '../css/App.css';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import Button from '@material-ui/core/Button';
+import { theme } from './configs/mui/config.jsx';
 
-import { firestore, FieldValue } from '../firebase/config.jsx';
-import { peer } from '../skyway/config.jsx';
+import { firestore, FieldValue } from './configs/firebase/config.jsx';
 import Message from './Messages.jsx';
 import ChatBox from './ChatBox.jsx';
 
@@ -55,10 +55,6 @@ class AppChat extends Component {
         }
       });
     });
-
-    peer.on('open', () => {
-      console.log(peer.id);
-    });
   }
 
   // 消える時実行
@@ -100,17 +96,13 @@ class AppChat extends Component {
   onJoinButtonClick() {
     if (this.state.room === null) {
       this.setState({
-        room: peer.joinRoom('tmg_chat_example', {
-          mode: 'sfu',
-        }),
+        room: 'joined',
       });
     }
   }
 
   onQuitButtonClick() {
     if (this.state.room !== null) {
-      console.log('quit');
-      peer.disconnect();
       this.setState({
         room: null,
       });
@@ -119,7 +111,7 @@ class AppChat extends Component {
 
   render() {
     return (
-      <MuiThemeProvider>
+      <MuiThemeProvider theme={theme}>
         <div className="App">
           <div className="App-header">
             <h2>Chat</h2>
