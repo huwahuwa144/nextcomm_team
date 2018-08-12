@@ -1,0 +1,77 @@
+$black: #000;
+$background-color: #A09A9A;
+$video-background-color: #333;
+$auto: auto;
+$video-others-min-margin: 2px;
+$video-others-min-border-color: #FFF;
+
+body {
+  .call {
+    background: $background-color;
+  }
+}
+
+.video-call-box {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  background: $video-background-color;
+  box-shadow: 2px 1px 1px;
+}
+
+.video-call-container {
+  display: flex;
+  margin: $auto;
+  height: 480px;
+  align-items: center;
+  justify-content: center;
+  width: 1280px;
+}
+
+.video-me {
+  width: calc(49% - 4px);
+  margin-right: .5%;
+  margin-left: .5%;
+  vertical-align: middle;
+}
+
+.video-others {
+  width: calc(49% - 4px);
+  margin-right: .5%;
+  margin-left: .5%;
+  vertical-align: middle;
+}
+
+.video-others-min {
+  margin: $video-others-min-margin;
+  margin-top: 4px;
+  width: 12.5%;
+  max-height: 150px;
+  border-top: 2px solid $video-others-min-border-color;
+  border-right: 2px solid $video-others-min-border-color;
+  border-left: 2px solid $video-others-min-border-color;
+  border-bottom: 2px solid $video-others-min-border-color;
+  box-shadow: 2px 1px 1px;
+  background: $black;
+
+}
+
+.root-grid {
+  margin: $auto;
+}
+
+.video-grid {
+  flex-wrap: nowrap;
+}
+
+.video-grid-center {
+  text-align: center;
+}
+
+// CallController_test
+
+.callcontroller {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}

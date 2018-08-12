@@ -10,6 +10,7 @@
     "react-dom": "^16.4.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
+    "react-video-tag": "0.0.10",
     "skyway-js": "^1.1.15"
   },
   "scripts": {
