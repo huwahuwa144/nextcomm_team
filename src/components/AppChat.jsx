@@ -7,6 +7,7 @@ import ListItem from '@material-ui/core/ListItem';
 import { theme } from './configs/mui/config.jsx';
 
 import { firestore, FieldValue } from './configs/firebase/config.jsx';
+import { displayNotif } from './methods/Notification.jsx';
 import Message from './Messages.jsx';
 import ChatBox from './ChatBox.jsx';
 
@@ -14,6 +15,8 @@ import ChatBox from './ChatBox.jsx';
 const messagesCol = firestore.collection('chatlog');
 // firebaseStoreの監視を終了させるやつ
 let unsubscribe;
+// 通知の許可
+let notifPerm;
 
 class AppChat extends Component {
   constructor(props) {
@@ -34,7 +37,7 @@ class AppChat extends Component {
   // Mountされた時実行
   componentWillMount() {
     // timestampで並び替えて50件まで表示
-    unsubscribe = messagesCol.orderBy('timestamp', 'desc').limit(2).onSnapshot((snapshot) => {
+    unsubscribe = messagesCol.orderBy('timestamp', 'desc').limit(50).onSnapshot((snapshot) => {
       snapshot.docChanges().reverse().forEach((change) => {
         const msgs = this.state.messages;
         // 追加時
@@ -45,34 +48,48 @@ class AppChat extends Component {
           const time = change.doc.data().timestamp;
           // timestampが確定してるもののみ通す
           if (time !== null) {
+            const cText = change.doc.data().text;
+            const cName = change.doc.data().user_name;
+            const cImage = change.doc.data().profile_image;
             const timeText = `${time.getMonth() + 1}/${time.getDate()} ${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`;
             msgs.push({
               id: change.doc.id,
-              text: change.doc.data().text,
-              user_name: change.doc.data().user_name,
-              profile_image: change.doc.data().profile_image,
+              text: cText,
+              user_name: cName,
+              profile_image: cImage,
               timestamp: timeText,
             });
             this.setState({
               messages: msgs,
             });
+            // 通知
+            if (notifPerm === 'granted') {
+              displayNotif(cText, cImage, cName);
+            }
           }
         } else if (change.type === 'modified') {
           // 変更された時
           console.log('modified');
 
+          const cText = change.doc.data().text;
+          const cName = change.doc.data().user_name;
+          const cImage = change.doc.data().profile_image;
           const time = change.doc.data().timestamp;
           const timeText = `${time.getMonth() + 1}/${time.getDate()} ${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`;
           msgs.push({
             id: change.doc.id,
-            text: change.doc.data().text,
-            user_name: change.doc.data().user_name,
-            profile_image: change.doc.data().profile_image,
+            text: cText,
+            user_name: cName,
+            profile_image: cImage,
             timestamp: timeText,
           });
           this.setState({
             messages: msgs,
           });
+          // 通知
+          if (notifPerm === 'granted') {
+            displayNotif(cText, cImage, cName);
+          }
         } else if (change.type === 'removed') {
           // 削除された時
           console.log('removed');
@@ -90,22 +107,20 @@ class AppChat extends Component {
         }
       });
     });
-    // const notif = window.Notification;
-    // window.Notification.requestPermission()
-    // if (!('Notification' in window)) {
-    //   alert('無理無理かたつむり');
-    // } else if (notif.permission === 'granted') {
-    //   const notification = new window.Notification('Hi there');
-    // } else if (notif.permission === 'denied') {
-    //   console.log('中');
-    //   notif.requestPermission((permission) => {
-    //     console.log('中');
-    //     if (permission === 'granted') {
-    //       console.log('中');
-    //       const notification = new window.Notification('Hi there');
-    //     }
-    //   });
-    // }
+    const notif = window.Notification;
+    if (!('Notification' in window)) {
+      alert('通知に対応していないブラウザです');
+    } else if (notif.permission === 'granted') {
+      notifPerm = notif.permission;
+      // const notification = new window.Notification('Hi there');
+    } else if (notif.permission === 'denied' || notif.permission === 'default') {
+      notif.requestPermission((permission) => {
+        if (permission === 'granted') {
+          // const notification = new window.Notification('Hi there');
+        }
+        notifPerm = notif.permission;
+      });
+    }
   }
 
   // 消える時実行
