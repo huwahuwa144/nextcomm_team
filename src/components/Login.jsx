@@ -1,14 +1,26 @@
 import React from 'react';
+import AppBar from '@material-ui/core/AppBar';
+import Button from '@material-ui/core/Button';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import MenuIcon from '@material-ui/icons/Menu';
 import { withRouter } from 'react-router-dom';
+import FormControl from '@material-ui/core/FormControl';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
 // import PropTypes from 'prop-types';
 import firebase from 'firebase';
 
 class Login extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { email: '', password: '' };
+    this.state = { email: '', password: '', showPassword: false };
     this.handleSignUp = this.handleSignUp.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
+    this.handleClickShowPassword = this.handleClickShowPassword.bind(this);
   }
 
   // async,awaitを使ってログインとサインインの処理を一時停止してましゅ。これで関数呼び出しの手間はぶいてます。
@@ -32,40 +44,69 @@ class Login extends React.Component {
     }
   }
 
+  handleClickShowPassword() {
+    this.setState(state => ({ showPassword: !state.showPassword }));
+  }
+
   render() {
     const { email, password } = this.state;
     return (
       <div>
-        <div>
-          <label htmlFor="email">
-            Email
-            <input
-              id="email"
-              value={email}
-              type="text"
-              onChange={e => this.setState({
-                email: e.target.value,
-              })
-            }
-            />
-          </label>
+        <AppBar position="static">
+          <Toolbar>
+            <IconButton color="inherit" aria-label="Menu">
+              <MenuIcon />
+            </IconButton>
+          </Toolbar>
+        </AppBar>
+        <div className="boxcontainer">
+          <div className="col">
+            <FormControl>
+              <InputLabel htmlFor="email">
+                Email
+              </InputLabel>
+              <Input
+                id="email"
+                value={email}
+                type="text"
+                onChange={e => this.setState({
+                  email: e.target.value,
+                })
+              }
+              />
+            </FormControl>
+          </div>
+          <div className="col">
+            <FormControl>
+              <InputLabel htmlFor="password">
+                password
+              </InputLabel>
+              <Input
+                id="password"
+                value={password}
+                type={this.state.showPassword ? 'text' : 'password'}
+                onChange={e => this.setState({
+                  password: e.target.value,
+                })
+                }
+                endAdornment={(
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="Toggle password visibility"
+                      onClick={this.handleClickShowPassword}
+                    >
+                      {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                )}
+              />
+            </FormControl>
+          </div>
         </div>
         <div>
-          <label htmlFor="password">
-            password
-            <input
-              id="password"
-              value={password}
-              type="password"
-              onChange={e => this.setState({
-                password: e.target.value,
-              })
-            }
-            />
-          </label>
+          <Button onClick={this.handleSignUp}>Sign up</Button>
+          <Button onClick={this.handleLogin}>Login</Button>
         </div>
-        <button type="button" onClick={this.handleSignUp}>Sign up</button>
-        <button type="button" onClick={this.handleLogin}>Login</button>
       </div>
     );
   }
