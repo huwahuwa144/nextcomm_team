@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import firebase from 'firebase';
 // import PropTypes from 'prop-types';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
@@ -14,6 +14,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import '../css/Home.css';
+import posed from 'react-pose';
 import logo from '../images/tty.jpg';
 import '../css/Drag.css';
 
@@ -41,6 +42,12 @@ const theme = createMuiTheme({
     },
   },
 });
+
+const props = {
+  draggable: true,
+};
+
+const Box = posed.div(props);
 
 const Home = () => (
   <MuiThemeProvider theme={theme}>
@@ -76,6 +83,7 @@ const Home = () => (
         </Toolbar>
       </AppBar>
     </div>
+    <Box className="box" />
   </MuiThemeProvider>
 );
 
