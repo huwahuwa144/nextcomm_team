@@ -55,5 +55,6 @@
   display: block;
   height: 200px;
   width: 200px;
-  background-color: #424242;
+  background-color: #535353;
+  border-radius: 50%;
 }
