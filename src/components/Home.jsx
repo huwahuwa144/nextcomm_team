@@ -17,6 +17,7 @@ import '../css/Home.css';
 import posed from 'react-pose';
 import logo from '../images/tty.jpg';
 import '../css/Drag.css';
+import { firestore } from './configs/firebase/config.jsx';
 
 const theme = createMuiTheme({
   palette: {
@@ -49,42 +50,91 @@ const props = {
 
 const Box = posed.div(props);
 
-const Home = () => (
-  <MuiThemeProvider theme={theme}>
-    <div className="felxgrow" style={{ backgroundColor: '#D84315' }}>
-      <AppBar position="static" color="primary">
-        <Toolbar>
-          <IconButton color="inherit" aria-label="Menu">
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="title" style={{ color: '#FAFAFA' }}>
-                ルーム名
-          </Typography>
-          <List>
-            <ListItem>
-              <ListItemText primary="テーブル1" />
-              <Avatar alt="aaaaaa" src={logo} />
-              <Avatar alt="bbbbbb" src={logo} />
-              <Avatar alt="cccccc" src={logo} />
-            </ListItem>
-          </List>
-          <List>
-            <ListItem>
-              <ListItemText primary="テーブル2" />
-              <Avatar alt="aaaaaa" src={logo} />
-              <Avatar alt="bbbbbb" src={logo} />
-              <Avatar alt="cccccc" src={logo} />
-            </ListItem>
-          </List>
-          <div className="felxgrow" />
-          <div className="menubutton">
-            <Button color="inherit" onClick={() => firebase.auth().signOut()}>Signout</Button>
-          </div>
-        </Toolbar>
-      </AppBar>
-    </div>
-    <Box className="box" />
-  </MuiThemeProvider>
-);
+class Home extends React.Component {
+  render() {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        // console.log(user.uid);
+        // alert(firestore.collection('tables'));
+        console.log(firestore.collection('tables'));
+      }
+    });
+    return (
+      <MuiThemeProvider theme={theme}>
+        <div className="felxgrow" style={{ backgroundColor: '#D84315' }}>
+          <AppBar position="static" color="primary">
+            <Toolbar>
+              <IconButton color="inherit" aria-label="Menu">
+                <MenuIcon />
+              </IconButton>
+              <Typography variant="title" style={{ color: '#FAFAFA' }}>
+                    ルーム名
+              </Typography>
+              <List>
+                <ListItem>
+                  <ListItemText primary="テーブル1" />
+                  <Avatar alt="aaaaaa" src={logo} />
+                  <Avatar alt="bbbbbb" src={logo} />
+                  <Avatar alt="cccccc" src={logo} />
+                </ListItem>
+              </List>
+              <List>
+                <ListItem>
+                  <ListItemText primary="テーブル2" />
+                  <Avatar alt="aaaaaa" src={logo} />
+                  <Avatar alt="bbbbbb" src={logo} />
+                  <Avatar alt="cccccc" src={logo} />
+                </ListItem>
+              </List>
+              <div className="felxgrow" />
+              <div className="menubutton">
+                <Button color="inherit" onClick={() => firebase.auth().signOut()}>Signout</Button>
+              </div>
+            </Toolbar>
+          </AppBar>
+        </div>
+        <Box className="box" />
+      </MuiThemeProvider>
+    );
+  }
+}
+
+// const Home = () => (
+//   <MuiThemeProvider theme={theme}>
+//     <div className="felxgrow" style={{ backgroundColor: '#D84315' }}>
+//       <AppBar position="static" color="primary">
+//         <Toolbar>
+//           <IconButton color="inherit" aria-label="Menu">
+//             <MenuIcon />
+//           </IconButton>
+//           <Typography variant="title" style={{ color: '#FAFAFA' }}>
+//                 ルーム名
+//           </Typography>
+//           <List>
+//             <ListItem>
+//               <ListItemText primary="テーブル1" />
+//               <Avatar alt="aaaaaa" src={logo} />
+//               <Avatar alt="bbbbbb" src={logo} />
+//               <Avatar alt="cccccc" src={logo} />
+//             </ListItem>
+//           </List>
+//           <List>
+//             <ListItem>
+//               <ListItemText primary="テーブル2" />
+//               <Avatar alt="aaaaaa" src={logo} />
+//               <Avatar alt="bbbbbb" src={logo} />
+//               <Avatar alt="cccccc" src={logo} />
+//             </ListItem>
+//           </List>
+//           <div className="felxgrow" />
+//           <div className="menubutton">
+//             <Button color="inherit" onClick={() => firebase.auth().signOut()}>Signout</Button>
+//           </div>
+//         </Toolbar>
+//       </AppBar>
+//     </div>
+//     <Box className="box" />
+//   </MuiThemeProvider>
+// );
 
 export default Home;
