@@ -60,10 +60,14 @@ class Home extends React.Component {
       if (user) {
         // console.log(user.uid);
         console.log(roomRef.collection('tables').doc(tableID).id);
-        // 以下書き込み
+        // 以下書き込み(member)
         roomRef.set({
           member: user.uid,
         });
+        // 以下データ消去(member)
+        // roomRef.update({
+        //   member: firebase.firestore.FieldValue.delete(),
+        // });
 
         roomRef.collection('tables').doc(tableID).set({
           member: user.uid,
