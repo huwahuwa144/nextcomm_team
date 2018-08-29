@@ -50,13 +50,24 @@ const props = {
 
 const Box = posed.div(props);
 
+const roomID = 'ByFNks35oPa2UdtxBbOL';
+const roomRef = firestore.collection('rooms').doc(roomID);
+const tableID = '6o7r01Es6WfeZmnKWmks';
+
 class Home extends React.Component {
   render() {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         // console.log(user.uid);
-        // alert(firestore.collection('tables'));
-        console.log(firestore.collection('tables'));
+        console.log(roomRef.collection('tables').doc(tableID).id);
+
+        roomRef.set({
+          member: user.uid,
+        });
+
+        roomRef.collection('tables').doc(tableID).set({
+          member: user.uid,
+        });
       }
     });
     return (
