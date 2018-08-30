@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import App from './App.jsx';
 import AppChat from './AppChat.jsx';
-import Profile from './Profile.jsx';
+import Profile from './profile.jsx';
 import AppCall from './AppCall_test.jsx';
 
 

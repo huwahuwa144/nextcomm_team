@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import '../css/AppCall.css';
 // import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { peer } from '../skyway/config.jsx';
+// import { peer } from '../skyway/config.jsx';
+import Peer from 'skyway-js';
 import CallBox from './CallBox_test.jsx';
 import CallController from './CallController_test.jsx';
 
+const peer = new Peer({
+  key: 'e649cb29-32c4-4274-bbe6-c12e414791dd',
+});
 
 class AppCall extends Component {
   static screenShareStart() {
@@ -14,7 +18,6 @@ class AppCall extends Component {
   static videoCallStart() {
 
   }
-
 
   constructor(props) {
     super(props);
@@ -31,11 +34,7 @@ class AppCall extends Component {
 
 
   componentWillMount() {
-    // シグナリングサーバへ接続
-    peer.on('open', () => {
-      console.log(peer.id);
-    });
-    global.navigator.mediaDevices.getUserMedia({ audio: true, video: true })
+    global.navigator.mediaDevices.getUserMedia({ audio: true, video: false })
       .then((streama) => {
         this.setState({ streamUrl: window.URL.createObjectURL(streama) });
         this.setState({ room: peer.joinRoom('tmgchattestserver1234', { mode: 'sfu', stream: streama }) });
@@ -46,9 +45,23 @@ class AppCall extends Component {
         });
         console.log(this.state.room.getLog());
         console.log(streama);
-      }).catch((error) => {
+      })
+      .then(() => {
+        this.state.room.on('stream', (stream) => {
+          console.log(stream);
+          // Streamをvideoに設定
+          this.setState({
+            streamOthersUrl: window.URL.createObjectURL(stream),
+          });
+        });
+      })
+      .catch((error) => {
         console.error('mediaDvice.getUserMedia() error:', error);
       });
+    // シグナリングサーバへ接続
+    peer.on('open', () => {
+      console.log(peer.id);
+    });
   }
 
   callStart() {
