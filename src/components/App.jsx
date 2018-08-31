@@ -14,6 +14,7 @@ class App extends React.Component {
   componentWillMount() {
     firebaseApp.auth().onAuthStateChanged((user) => {
       if (user) {
+        // alert(firebase.auth().currentUser);
         this.setState({
           authenticated: true,
           // currentUser: user,

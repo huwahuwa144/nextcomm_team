@@ -21,6 +21,7 @@ import '../css/Home.css';
 import posed from 'react-pose';
 import logo from '../images/tty.jpg';
 import '../css/Drag.css';
+import { firestore } from './configs/firebase/config.jsx';
 
 const theme = createMuiTheme({
   palette: {
@@ -50,6 +51,9 @@ const theme = createMuiTheme({
 const props1 = {
   draggable: true,
 };
+const roomID = 'ByFNks35oPa2UdtxBbOL';
+const roomRef = firestore.collection('rooms').doc(roomID);
+const tableID = '6o7r01Es6WfeZmnKWmks';
 const nitaku = ['通話しますか？', 'チャットしますか？'];
 const styles = {
   avatar: {
@@ -88,6 +92,24 @@ class Home extends React.Component {
 
 
   render() {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        // console.log(user.uid);
+        console.log(roomRef.collection('tables').doc(tableID).id);
+        // 以下書き込み(member)
+        roomRef.set({
+          member: user.uid,
+        });
+        // 以下データ消去(member)
+        // roomRef.update({
+        //   member: firebase.firestore.FieldValue.delete(),
+        // });
+
+        roomRef.collection('tables').doc(tableID).set({
+          member: user.uid,
+        });
+      }
+    });
     const {
       classes,
       onClose,
