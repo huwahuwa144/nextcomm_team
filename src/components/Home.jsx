@@ -158,6 +158,12 @@ class Home extends React.Component {
           </div>
         </Dialog>
         <Button color="inherit" onClick={this.handleClickOpen}>こんにちは</Button>
+        <div className="target" id="target">
+          <Box className="box" />
+          <p className="user">
+              南達也(22)
+          </p>
+        </div>
       </MuiThemeProvider>
     );
   }
