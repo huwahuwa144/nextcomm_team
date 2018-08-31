@@ -4,6 +4,8 @@ import App from './App.jsx';
 import AppChat from './AppChat.jsx';
 import Profile from './profile.jsx';
 
+// Email:kon@gmail.com
+// pas:123123
 
 const Root = () => (
   <BrowserRouter>

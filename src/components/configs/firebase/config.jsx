@@ -11,5 +11,10 @@ export const firebaseConfig = {
 
 export const firebaseApp = firebase.initializeApp(firebaseConfig);
 
-export const firestore = firebaseApp.firestore();
+// export const firestore = firebaseApp.firestore();
+export const firestore = firebase.firestore();
+// const settings = {
+//   timestampsInSnapShots: true,
+// };
+// firestore.settings(settings);
 export const { FieldValue } = firebase.firestore;
