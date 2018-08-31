@@ -83,7 +83,12 @@ const Home = () => (
         </Toolbar>
       </AppBar>
     </div>
-    <Box className="box" />
+    <div className="target" id="target">
+      <Box className="box" />
+      <p className="user">
+        南達也(22)
+      </p>
+    </div>
   </MuiThemeProvider>
 );
 
