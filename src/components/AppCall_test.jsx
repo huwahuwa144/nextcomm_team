@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
 import '../css/AppCall.css';
 // import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-// import { peer } from '../skyway/config.jsx';
-import Peer from 'skyway-js';
+import { peer } from './configs/skyway/config.jsx';
 import CallBox from './CallBox_test.jsx';
 import CallController from './CallController_test.jsx';
-
-const peer = new Peer({
-  key: 'e649cb29-32c4-4274-bbe6-c12e414791dd',
-});
 
 class AppCall extends Component {
   static screenShareStart() {
