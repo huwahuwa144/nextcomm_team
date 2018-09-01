@@ -21,7 +21,7 @@ let tableRef;
 let chatlogRef;
 
 // firebaseStoreの監視を終了させるやつ
-let unsubscribe;
+let unsubscribe = null;
 // 通知の許可
 let notifPerm;
 
@@ -52,7 +52,10 @@ class AppChat extends Component {
 
   // 消える時実行
   componentWillUnmount() {
-    unsubscribe();
+    if (unsubscribe !== null) {
+      unsubscribe();
+      unsubscribe = null;
+    }
   }
 
   onTextChange(e) {
