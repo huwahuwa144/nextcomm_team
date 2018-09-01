@@ -19,7 +19,7 @@ import PersonIcon from '@material-ui/icons/Person';
 import blue from '@material-ui/core/colors/blue';
 import '../css/Home.css';
 import posed from 'react-pose';
-import logo from '../images/tty.jpg';
+import logo from '../images/default_icon.png';
 import '../css/Drag.css';
 import { firestore } from './configs/firebase/config.jsx';
 
@@ -183,7 +183,7 @@ class Home extends React.Component {
         <div className="target" id="target">
           <Box className="box" />
           <p className="user">
-              南達也(22)
+              unknown
           </p>
         </div>
       </MuiThemeProvider>
