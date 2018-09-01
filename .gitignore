@@ -2,6 +2,8 @@
 
 # dependencies
 /node_modules
+/src/components/configs/firebase/key.jsx
+/src/components/configs/skyway/key.jsx
 
 # testing
 /coverage
