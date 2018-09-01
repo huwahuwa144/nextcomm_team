@@ -1,45 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Avatar from '@material-ui/core/Avatar';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import ListSubheader from '@material-ui/core/ListSubheader';
 import Chip from '@material-ui/core/Chip';
 
 const styles = {
   header: {
     textAlign: 'left',
   },
-  chip: {
-    margin: 4,
-  },
-  wrapper: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  row: {
-    display: 'flex',
-    justifyContent: 'center',
-  },
 };
 
 export default class Message extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      avatar_img: this.props.message.profile_image,
+      user_name: this.props.message.user_name,
+      text: this.props.message.text,
+      timestamp: this.props.message.timestamp,
+    };
+  }
+
   render() {
     return (
       <div className="Message">
-        <List>
-          <ListSubheader style={styles.header}>
-            <Chip
-              style={styles.header}
-              avatar={<Avatar className="" src={this.props.message.profile_image} />}
-              label={this.props.message.user_name}
-            />
-          </ListSubheader>
-          <ListItem>
-            <ListItemText primary={this.props.message.text} />
-          </ListItem>
-        </List>
+        <Chip
+          style={styles.header}
+          avatar={<Avatar className="" src={this.state.avatar_img} />}
+          label={`${this.state.user_name} ${this.state.timestamp}`}
+        />
+        <ListItemText primary={this.state.text} />
       </div>
     );
   }
@@ -50,5 +40,6 @@ Message.propTypes = {
     profile_image: PropTypes.string,
     user_name: PropTypes.string,
     text: PropTypes.string,
+    timestamp: PropTypes.string,
   }),
 };

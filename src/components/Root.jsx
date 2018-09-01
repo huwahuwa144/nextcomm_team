@@ -5,6 +5,8 @@ import AppChat from './AppChat.jsx';
 import Profile from './profile.jsx';
 import AppCall from './AppCall_test.jsx';
 
+// Email:kon@gmail.com
+// pas:123123
 
 const Root = () => (
   <BrowserRouter>
