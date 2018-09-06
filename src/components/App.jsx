@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 // import firebase from 'firebase';
 import { firebaseApp } from './configs/firebase/config.jsx';
 import Login from './Login';
-import Home from './Home';
+import Room from './Room';
 
 class App extends React.Component {
   constructor(props) {
@@ -41,7 +41,7 @@ class App extends React.Component {
             exact
             path="/"
             render={() => (authenticated === true ? (
-              <Home />
+              <Room />
             ) : (
               <Redirect to="/login" />
             ))

@@ -14,13 +14,13 @@ const Root = () => (
       <ul>
         <li><Link to="/">App</Link></li>
         <li><Link to="/chat">AppChat</Link></li>
-        <li><Link to="/profile">Profile</Link></li>
+        <li><Link to="/Profile">Profile</Link></li>
         <li><Link to="/call">AppCall</Link></li>
       </ul>
       <hr />
       <Route exact path="/" component={App} />
       <Route path="/chat" component={AppChat} />
-      <Route path="/profile" component={Profile} />
+      <Route path="/Profile" component={Profile} />
       <Route path="/call" component={AppCall} />
     </div>
   </BrowserRouter>

@@ -22,6 +22,7 @@ import posed from 'react-pose';
 import logo from '../images/default_icon.png';
 import '../css/Drag.css';
 import { firestore } from './configs/firebase/config.jsx';
+import AppChat from './AppChat.jsx';
 
 const theme = createMuiTheme({
   palette: {
@@ -62,10 +63,29 @@ const styles = {
   },
 };
 const Box = posed.div(props1);
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    // console.log(user.uid);
+    console.log(roomRef.collection('tables').doc(tableID).id);
+    // 以下書き込み(member)
+    roomRef.set({
+      member: user.uid,
+    });
+    // 以下データ消去(member)
+    // roomRef.update({
+    //   member: firebase.firestore.FieldValue.delete(),
+    // });
 
-class Home extends React.Component {
+    roomRef.collection('tables').doc(tableID).set({
+      member: user.uid,
+    });
+  }
+});
+
+export default class Room extends React.Component {
   constructor(props) {
     super(props);
+    this.roomId = 'ByFNks35oPa2UdtxBbOL';
     this.state = { open: false, selectedValue: nitaku[1] };
     this.handleClickOpen = this.handleClickOpen.bind(this);
     this.handleClose = this.handleClose.bind(this);
@@ -92,24 +112,6 @@ class Home extends React.Component {
 
 
   render() {
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        // console.log(user.uid);
-        console.log(roomRef.collection('tables').doc(tableID).id);
-        // 以下書き込み(member)
-        roomRef.set({
-          member: user.uid,
-        });
-        // 以下データ消去(member)
-        // roomRef.update({
-        //   member: firebase.firestore.FieldValue.delete(),
-        // });
-
-        roomRef.collection('tables').doc(tableID).set({
-          member: user.uid,
-        });
-      }
-    });
     const {
       classes,
       onClose,
@@ -186,15 +188,16 @@ class Home extends React.Component {
               unknown
           </p>
         </div>
+        <div>
+          <AppChat chatID={this.roomId} />
+        </div>
       </MuiThemeProvider>
     );
   }
 }
 
-Home.propTypes = {
+Room.propTypes = {
   classes: PropTypes.string.isRequired,
   onClose: PropTypes.func,
   selectedValue: PropTypes.string,
 };
-
-export default Home;
