@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
-import '../css/App.css';
+import PropTypes from 'prop-types';
+import '../../css/App.css';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import TextField from '@material-ui/core/TextField';
-import { theme } from './configs/mui/config.jsx';
+import { theme } from '../configs/mui/config.jsx';
 
-import { firestore, FieldValue } from './configs/firebase/config.jsx';
-import { displayNotif } from './methods/Notification.jsx';
+import { firestore, FieldValue } from '../configs/firebase/config.jsx';
+import { displayNotif } from '../methods/Notification.jsx';
 import Message from './Messages.jsx';
-import ChatBox from './ChatBox.jsx';
+import InputField from './InputField.jsx';
 
 const roomID = 'ByFNks35oPa2UdtxBbOL';
 const roomRef = firestore.collection('rooms').doc(roomID);
@@ -18,7 +19,7 @@ const roomRef = firestore.collection('rooms').doc(roomID);
 // const tableRef = roomRef.collection('tables').doc(tableID);
 // const chatlogRef = tableRef.collection('chatlog');
 let tableRef;
-let chatlogRef;
+// let chatlogRef;
 
 // firebaseStoreの監視を終了させるやつ
 let unsubscribe = null;
@@ -47,7 +48,7 @@ class AppChat extends Component {
 
   // Mountされた時実行
   componentWillMount() {
-
+    this.connectChatServer();
   }
 
   // 消える時実行
@@ -88,7 +89,8 @@ class AppChat extends Component {
     } else if (this.state.text === '') {
       alert('text is empty');
     } else {
-      chatlogRef.add({
+      const { chatRef } = this.props;
+      chatRef.add({
         user_name: this.state.user_name,
         profile_image: this.state.profile_image,
         text: this.state.text,
@@ -100,20 +102,20 @@ class AppChat extends Component {
   onJoinButtonClick() {
     if (this.state.joined === false && this.state.table_name !== '') {
       // 入力されたテーブル名が存在するかどうか すればchatlogに接続
-      tableRef = roomRef.collection('tables').doc(this.state.table_name);
-      tableRef.get().then((doc) => {
-        if (doc.exists) {
-          chatlogRef = tableRef.collection('chatlog');
-          this.connectChatServer();
-          this.setState({
-            joined: true,
-          });
-        } else {
-          console.log(tableRef);
-          alert('ねぇよんなもん');
-          tableRef = null;
-        }
-      });
+      // tableRef = roomRef.collection('tables').doc(this.state.table_name);
+      // tableRef.get().then((doc) => {
+      //   if (doc.exists) {
+      //     chatlogRef = tableRef.collection('chatlog');
+      //     this.connectChatServer();
+      //     this.setState({
+      //       joined: true,
+      //     });
+      //   } else {
+      //     console.log(tableRef);
+      //     alert('ねぇよんなもん');
+      //     tableRef = null;
+      //   }
+      // });
     }
   }
 
@@ -127,8 +129,9 @@ class AppChat extends Component {
   }
 
   connectChatServer() {
+    const { chatRef } = this.props;
     // timestampで並び替えて50件まで表示
-    unsubscribe = chatlogRef.orderBy('timestamp', 'desc').limit(50).onSnapshot((snapshot) => {
+    unsubscribe = chatRef.orderBy('timestamp', 'desc').limit(50).onSnapshot((snapshot) => {
       snapshot.docChanges().reverse().forEach((change) => {
         const msgs = this.state.messages;
         // 追加時
@@ -241,7 +244,7 @@ class AppChat extends Component {
               );
             })}
           </List>
-          <ChatBox onTextChange={this.onTextChange} onButtonClick={this.onButtonClick} />
+          <InputField onTextChange={this.onTextChange} onButtonClick={this.onButtonClick} />
           <div className="">
             <Button variant="contained" name="quit" color="primary" className="" onClick={this.onQuitButtonClick}>Quit</Button>
           </div>
@@ -250,5 +253,9 @@ class AppChat extends Component {
     );
   }
 }
+
+AppChat.propTypes = {
+  chatRef: PropTypes.any,
+};
 
 export default AppChat;

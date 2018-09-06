@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 
-export default class ChatBox extends React.Component {
+export default class InputField extends React.Component {
   render() {
     return (
       <div className="ChatBox">
@@ -19,7 +19,7 @@ export default class ChatBox extends React.Component {
   }
 }
 
-ChatBox.propTypes = {
+InputField.propTypes = {
   onTextChange: PropTypes.func,
   onButtonClick: PropTypes.func,
 };

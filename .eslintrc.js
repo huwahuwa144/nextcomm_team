@@ -27,7 +27,8 @@ module.exports = {
     "react/require-default-props": [0],
     "linebreak-style": ["error", "windows"],
     "react/jsx-one-expression-per-line":[0],
-    "react/destructuring-assignment": [0]
+    "react/destructuring-assignment": [0],
+    "react/forbid-prop-types": [0]
   }
 
 };
