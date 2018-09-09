@@ -9,12 +9,6 @@ import 'react-tabs/style/react-tabs.css';
 import { firestore } from '../configs/firebase/config.jsx';
 import AppChat from './AppChat.jsx';
 
-const roomID = 'ByFNks35oPa2UdtxBbOL';
-const roomRef = firestore.collection('rooms').doc(roomID);
-const tableCol = roomRef.collection('tables');
-
-let unsubscribeTable = null;
-
 export default class ChatBox extends React.Component {
   static handleSelect(index, last) {
     console.log(`tabNum:${index}, Last Tab: ${last}`);
@@ -24,7 +18,8 @@ export default class ChatBox extends React.Component {
     super(props);
     this.getTableList = this.getTableList.bind(this);
     this.roomID = 'ByFNks35oPa2UdtxBbOL';
-    this.roomChatRef = firestore.collection('rooms').doc(this.roomID).collection('chatlog');
+    this.roomRef = firestore.collection('rooms').doc(this.roomID);
+    this.roomChatRef = this.roomRef.collection('chatlog');
     this.tempTblList = [];
     this.tempTblList.push({
       id: this.roomID,
@@ -40,71 +35,54 @@ export default class ChatBox extends React.Component {
   }
 
   componentWillUnmount() {
-    if (unsubscribeTable !== null) {
-      unsubscribeTable();
-      unsubscribeTable = null;
-    }
   }
 
   getTableList() {
-    unsubscribeTable = tableCol.orderBy('timestamp', 'desc').onSnapshot((snapshot) => {
-      snapshot.docChanges().reverse().forEach((change) => {
-        const tblList = this.state.tables;
-        if (change.type === 'added' || change.type === 'modified') {
-          console.log('added');
-          tblList.push({
-            id: change.doc.id,
-            name: change.doc.data().tableName,
-            logRef: firestore.collection('rooms').doc(this.roomID).collection('tables').doc(change.doc.id),
-          });
-          this.setState({
-            tables: tblList,
-          });
-        } else if (change.type === 'removed') {
-          const target = change.doc.id;
-          tblList.some((tbl, i) => {
-            if (tbl.id === target) {
-              tblList.splice(i, 1);
-            }
-            return false;
-          });
-          this.setState({
-            tables: tblList,
-          });
-        }
-      });
+    console.log('getTable');
+    const tblID = '6o7r01Es6WfeZmnKWmks';
+    const tempRef = this.roomRef.collection('tables').doc(tblID).collection('chatlog');
+    const temp = [];
+    temp.push({
+      id: tblID,
+      logRef: tempRef,
     });
+    this.setState(prevState => ({
+      tables: prevState.tables.concat(temp),
+    }));
   }
 
   render() {
     return (
-      <Tabs
-        onSelect={this.handleSelect}
-      >
+      <Tabs onSelect={this.handleSelect}>
         <TabList>
-          <Tab>ALL</Tab>
-          {this.state.tables.map((table) => {
+          {this.state.tables.map((table, i) => {
+            if (i === 0) {
+              return (
+                <Tab>ALL</Tab>
+              );
+            }
             return (
-              <Tab key={table.id}>{table.name}</Tab>
+              <Tab key={table.id}>{table.id}</Tab>
             );
           })}
-          <Tab>Custom</Tab>
         </TabList>
 
-        <TabPanel>
-          <AppChat />
-        </TabPanel>
-        {this.state.tables.map((table) => {
+        {this.state.tables.map((table, i) => {
+          if (i === 0) {
+            return (
+              <TabPanel key={table.id}>
+                <div>ALL</div>
+                <AppChat chatRef={table.logRef} />
+              </TabPanel>
+            );
+          }
           return (
             <TabPanel key={table.id}>
-              <div>{table.name}</div>
+              <div>{table.id}</div>
               <AppChat chatRef={table.logRef} />
             </TabPanel>
           );
         })}
-        <TabPanel>
-          <AppChat />
-        </TabPanel>
 
       </Tabs>
     );
