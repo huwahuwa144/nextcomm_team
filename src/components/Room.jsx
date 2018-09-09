@@ -55,7 +55,7 @@ const props1 = {
 };
 const roomID = 'ByFNks35oPa2UdtxBbOL';
 const roomRef = firestore.collection('rooms').doc(roomID);
-const tableID = '6o7r01Es6WfeZmnKWmks';
+// const tableID = '6o7r01Es6WfeZmnKWmks';
 const nitaku = ['通話しますか？', 'チャットしますか？'];
 const styles = {
   avatar: {
@@ -64,24 +64,7 @@ const styles = {
   },
 };
 const Box = posed.div(props1);
-firebase.auth().onAuthStateChanged((user) => {
-  if (user) {
-    // console.log(user.uid);
-    console.log(roomRef.collection('tables').doc(tableID).id);
-    // 以下書き込み(member)
-    roomRef.set({
-      member: user.uid,
-    });
-    // 以下データ消去(member)
-    // roomRef.update({
-    //   member: firebase.firestore.FieldValue.delete(),
-    // });
 
-    roomRef.collection('tables').doc(tableID).set({
-      member: user.uid,
-    });
-  }
-});
 
 export default class Room extends React.Component {
   constructor(props) {
@@ -92,6 +75,28 @@ export default class Room extends React.Component {
     this.handleClose = this.handleClose.bind(this);
     this.handleClose2 = this.handleClose2.bind(this);
     this.handleListItemClick = this.handleListItemClick.bind(this);
+  }
+
+  async componentWillMount() {
+    const tbl = await roomRef.collection('tables').get();
+    const tblId = tbl.docs[0].id;
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        // console.log(user.uid);
+        console.log(tblId);
+        // 以下書き込み(member)
+        roomRef.update({
+          member: user.uid,
+        });
+        // 以下データ消去(member)
+        // roomRef.update({
+        //   member: firebase.firestore.FieldValue.delete(),
+        // });
+        // roomRef.collection('tables').doc(tableID).set({
+        //   member: user.uid,
+        // });
+      }
+    });
   }
 
   handleClickOpen() {

@@ -40,7 +40,7 @@ export default class ChatBox extends React.Component {
   async getTableList() {
     console.log('getTable');
     const tbl = await this.roomRef.collection('tables').get();
-    const tblId = tbl.docs[0].id
+    const tblId = tbl.docs[0].id;
     const tempRef = await this.roomRef.collection('tables').doc(tblId).collection('chatlog');
     const temp = [];
     temp.push({
