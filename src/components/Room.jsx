@@ -22,7 +22,7 @@ import posed from 'react-pose';
 import logo from '../images/default_icon.png';
 import '../css/Drag.css';
 import { firestore } from './configs/firebase/config.jsx';
-import AppChat from './AppChat.jsx';
+import ChatBox from './chat/ChatBox.jsx';
 
 const theme = createMuiTheme({
   palette: {
@@ -189,7 +189,7 @@ export default class Room extends React.Component {
           </p>
         </div>
         <div>
-          <AppChat chatID={this.roomId} />
+          <ChatBox chatID={this.roomId} />
         </div>
       </MuiThemeProvider>
     );
