@@ -13,6 +13,7 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 // import PropTypes from 'prop-types';
 import firebase from 'firebase';
+import { firestore } from './configs/firebase/config.jsx';
 
 class Login extends React.Component {
   constructor(props) {
