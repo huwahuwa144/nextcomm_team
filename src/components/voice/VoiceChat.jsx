@@ -25,6 +25,10 @@ class VoiceChat extends Component {
 
 
   componentWillMount() {
+
+  }
+
+  callStart() {
     global.navigator.mediaDevices.getUserMedia({ audio: true, video: false })
       .then((streama) => {
         this.setState({ room: peer.joinRoom('tmgchattestserver1234', { mode: 'sfu', stream: streama }) });
@@ -52,24 +56,6 @@ class VoiceChat extends Component {
     peer.on('open', () => {
       console.log(peer.id);
     });
-  }
-
-  callStart() {
-    peer.listAllPeers((peers) => {
-      console.log(peers);
-      // => ["yNtQkNyjAojJNGrt", "EzAmgFhCKBQMzKw9"]
-    });
-    console.log(this.state.room);
-    if (this.state.room !== null) {
-      console.log('1');
-      this.state.room.on('stream', (stream) => {
-        console.log(stream);
-        // Streamをvideoに設定
-        this.setState({
-          streamOthersUrl: window.URL.createObjectURL(stream),
-        });
-      });
-    }
   }
 
   callStop() {

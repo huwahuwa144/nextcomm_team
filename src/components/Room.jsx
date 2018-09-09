@@ -92,6 +92,7 @@ export default class Room extends React.Component {
     this.handleClose = this.handleClose.bind(this);
     this.handleClose2 = this.handleClose2.bind(this);
     this.handleListItemClick = this.handleListItemClick.bind(this);
+    this._callStart = this._callStart.bind(this);
   }
 
   handleClickOpen() {
@@ -104,7 +105,14 @@ export default class Room extends React.Component {
   }
 
   handleListItemClick(value) {
-    this.props.onClose(value);
+    if (value === '通話しますか？') {
+      console.log(value);
+      this._callStart();
+    }
+  }
+
+  _callStart() {
+    this.refs.child.callStart();
   }
 
   handleClose2() {
@@ -193,7 +201,7 @@ export default class Room extends React.Component {
           <ChatBox chatID={this.roomId} />
         </div>
         <div>
-          <VoiceChat />
+          <VoiceChat ref="child"/>
         </div>
       </MuiThemeProvider>
     );
