@@ -17,7 +17,7 @@ export default class CallBox extends React.Component {
                 <VideoTag src={this.props.streamUrl} className="video-me" autoPlay muted><track kind="captions" /></VideoTag>
               </span>
               <span className="video-border">
-                <VideoTag src={this.props.streamOthersUrl} className="video-others" autoPlay><track kind="captions" /></VideoTag>
+                <audio src={this.props.streamOthersUrl} className="video-others" autoPlay><track kind="captions" /></audio>
               </span>
             </div>
           </div>
