@@ -11,6 +11,7 @@ class App extends React.Component {
     this.state = { loading: true, authenticated: false };
   }
 
+
   componentWillMount() {
     firebaseApp.auth().onAuthStateChanged((user) => {
       if (user) {

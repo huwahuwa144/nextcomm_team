@@ -201,7 +201,7 @@ export default class Room extends React.Component {
           <ChatBox chatID={this.roomId} />
         </div>
         <div>
-          <VoiceChat ref="child"/>
+          <VoiceChat ref="child" />
         </div>
       </MuiThemeProvider>
     );
