@@ -17,6 +17,7 @@ module.exports = {
     "react/prefer-stateless-function": [0],
     "no-useless-constructor": [0],
     "import/no-unresolved": [0],
+    "import/no-cycle": [0],
     "import/extensions": [0],
     "max-len": [1, 300, 2],
     "import/prefer-default-export": [0],

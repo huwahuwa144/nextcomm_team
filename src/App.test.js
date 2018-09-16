@@ -1,3 +1,5 @@
+// npm testで実行される
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';

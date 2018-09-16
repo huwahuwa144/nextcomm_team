@@ -5,6 +5,7 @@ import App from './App.jsx';
 import ChatBox from './chat/ChatBox.jsx';
 import Profile from './Profile.jsx';
 import AppCall from './AppCall_test.jsx';
+import RoomList from './RoomList.jsx';
 
 // Email:kon@gmail.com
 // pas:123123
@@ -17,12 +18,14 @@ const Root = () => (
         <li><Link to="/chat">AppChat</Link></li>
         <li><Link to="/Profile">Profile</Link></li>
         <li><Link to="/call">AppCall</Link></li>
+        <li><Link to="/roomlist">RoomList</Link></li>
       </ul>
       <hr />
       <Route exact path="/" component={App} />
       <Route path="/chat" component={ChatBox} />
       <Route path="/Profile" component={Profile} />
       <Route path="/call" component={AppCall} />
+      <Route path="/roomlist" component={RoomList} />
     </div>
   </BrowserRouter>
 );
