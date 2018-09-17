@@ -15,6 +15,7 @@ import RoomListContainer from './containers/RoomListContainer';
 const initialState = {
   roomID: null,
   roomList: [],
+  tableID: null,
   tableList: [],
 };
 

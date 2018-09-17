@@ -6,6 +6,7 @@ import { getTables } from '../actions/RoomAction';
 const mapStateToProps = (state) => {
   return {
     roomID: state.roomID,
+    tableID: state.tableID,
     tableList: state.tableList,
   };
 };
