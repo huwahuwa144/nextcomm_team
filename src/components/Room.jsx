@@ -5,6 +5,8 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -27,7 +29,7 @@ export default class Room extends React.Component {
     this.handleClose = this.handleClose.bind(this);
     this.state = {
       createTableName: '',
-      open: false,
+      anchorEl: null,
       selectedTableID: '',
       selectedValue: '',
     };
@@ -45,9 +47,9 @@ export default class Room extends React.Component {
     }
   }
 
-  handleClickOpen(id) {
+  handleClickOpen(event, id) {
     this.setState({
-      open: true,
+      anchorEl: event.currentTarget,
       selectedTableID: id,
     });
   }
@@ -55,7 +57,7 @@ export default class Room extends React.Component {
   handleClose(value = '') {
     this.setState({
       selectedValue: value,
-      open: false,
+      anchorEl: null,
     }, () => {
       if (this.state.selectedTableID !== '' && (this.state.selectedValue === 'text' || this.state.selectedValue === 'voice')) {
         console.log(`${this.state.selectedTableID} and ${this.state.selectedValue}`);
@@ -90,13 +92,14 @@ export default class Room extends React.Component {
           {this.props.tableList.map((table) => {
             return (
               <div key={table.tableID}>
-                <Box className="box" onClick={() => this.handleClickOpen(table.tableID)} />
-                <li onClick={() => this.handleClickOpen(table.tableID)} role="presentation">{table.name}</li>
+                <Box className="box" onClick={e => this.handleClickOpen(e, table.tableID)} />
+                <li onClick={e => this.handleClickOpen(e, table.tableID)} role="presentation">{table.name}</li>
               </div>
             );
           })}
         </ul>
 
+        {/* Dialogバージョン stateのanchorElをopenのtrue or falseにして関数をそれに合わせればこれにできる */}
         <Dialog
           title="Dialog"
           open={this.state.open}
@@ -115,6 +118,17 @@ export default class Room extends React.Component {
             </List>
           </div>
         </Dialog>
+
+        {/* Popoverバージョン */}
+        <Menu
+          id="table-menu"
+          anchorEl={this.state.anchorEl}
+          open={Boolean(this.state.anchorEl)}
+          onClose={this.handleClose}
+        >
+          <MenuItem key="text" onClick={() => this.handleClose('text')}>テキストチャット</MenuItem>
+          <MenuItem key="voice" onClick={() => this.handleClose('voice')}>ボイスチャット</MenuItem>
+        </Menu>
       </MuiThemeProvider>
     );
   }
