@@ -15,16 +15,18 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getTables(roomid) {
       const temp = [];
-      firestore.collection('rooms').doc(roomid).collection('tables').get()
-        .then((querySnapshot) => {
-          querySnapshot.forEach((doc) => {
-            temp.push({
-              tableID: doc.id,
-              name: doc.data().name,
+      if (roomid !== null) {
+        firestore.collection('rooms').doc(roomid).collection('tables').get()
+          .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+              temp.push({
+                tableID: doc.id,
+                name: doc.data().name,
+              });
             });
+            dispatch(getTables(temp));
           });
-          dispatch(getTables(temp));
-        });
+      }
     },
   };
 };

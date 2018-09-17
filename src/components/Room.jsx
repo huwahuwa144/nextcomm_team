@@ -29,6 +29,7 @@ export default class Room extends React.Component {
       createTableName: '',
       open: false,
       selectedTableID: '',
+      selectedValue: '',
     };
   }
 

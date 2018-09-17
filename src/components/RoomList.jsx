@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
 import { firestore } from './configs/firebase/config';
 import { theme } from './configs/mui/config';
 
@@ -61,13 +64,17 @@ export default class RoomList extends React.Component {
         <Button variant="contained" color="primary" onClick={this.props.getRoomList}>Refresh</Button>
         <TextField id="createRoomName" name="createRoomName" onChange={this.onTextChange} className="" placeholder="Create Room Name" />
         <Button variant="contained" color="primary" onClick={this.createRoom}>Create</Button>
-        <ul>
+        <List>
           {this.props.roomList.map((room) => {
             return (
-              <li key={room.roomID}><Link to="/room" onClick={() => this.sendID(room.roomID)}>{room.name}</Link></li>
+              <Link key={room.roomID} to="/room" onClick={() => this.sendID(room.roomID)}>
+                <ListItem button>
+                  <ListItemText primary={room.name} />
+                </ListItem>
+              </Link>
             );
           })}
-        </ul>
+        </List>
       </MuiThemeProvider>
     );
   }
