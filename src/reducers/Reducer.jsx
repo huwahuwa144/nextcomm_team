@@ -6,7 +6,11 @@ export default function appReducer(state, action) {
       );
     case 'SELECT_ROOM':
       return (
-        Object.assign({}, state, { roomID: action.roomid })
+        Object.assign({}, state, { roomID: action.roomID })
+      );
+    case 'GET_TABLES':
+      return (
+        Object.assign({}, state, { tableList: action.tableList })
       );
     default:
       return state;

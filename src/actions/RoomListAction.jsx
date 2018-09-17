@@ -7,3 +7,10 @@ export const getRooms = (list) => {
     roomList: list,
   };
 };
+
+export const selectRoom = (id) => {
+  return {
+    type: SELECT_ROOM,
+    roomID: id,
+  };
+};

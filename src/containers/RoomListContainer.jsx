@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { firestore } from '../components/configs/firebase/config';
 import RoomList from '../components/RoomList';
-import { getRooms } from '../actions/RoomListActions';
+import { getRooms, selectRoom } from '../actions/RoomListAction';
 
 const mapStateToProps = (state) => {
   return {
@@ -23,12 +23,15 @@ const mapDispatchToProps = (dispatch) => {
         dispatch(getRooms(temp));
       });
     },
+    selectedRoomID(id) {
+      dispatch(selectRoom(id));
+    },
   };
 };
 
-const AppContainer = connect(
+const RoomListContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
 )(RoomList);
 
-export default AppContainer;
+export default RoomListContainer;
